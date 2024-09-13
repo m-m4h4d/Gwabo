@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Gwabo</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_grocery">Grocery</string>
+    <string name="title_restaurant">Restaurants</string>
+    <string name="title_orders_list">Order list</string>
 </resources>
