@@ -6,97 +6,81 @@
     android:layout_height="match_parent"
     tools:context=".ui.dashboard.DashboardFragment">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="409dp"
+        android:layout_height="64dp"
+        android:layout_margin="0dp"
+        android:src="@drawable/top"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.092"
+        tools:ignore="ContentDescription" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+    <Button
+        android:id="@+id/button7"
+        android:background="@drawable/rounded_corners"
+        android:layout_width="84dp"
+        android:layout_height="24dp"
+        android:padding="0dp"
+        android:text="Spices"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.342"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.195"
+        tools:ignore="HardcodedText,SmallSp" />
 
-            <ImageView
-                android:id="@+id/imageView6"
-                android:layout_width="409dp"
-                android:layout_height="64dp"
-                android:layout_margin="0dp"
-                android:src="@drawable/top"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.092"
-                tools:ignore="ContentDescription" />
+    <Button
+        android:id="@+id/button8"
+        android:background="@drawable/rounded_corners"
+        android:layout_width="84dp"
+        android:layout_height="24dp"
+        android:padding="0dp"
+        android:text="Hair"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.636"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.195"
+        tools:ignore="HardcodedText,SmallSp" />
 
-            <Button
-                android:id="@+id/button7"
-                android:background="@drawable/rounded_corners"
-                android:layout_width="84dp"
-                android:layout_height="24dp"
-                android:padding="0dp"
-                android:text="Spices"
-                android:textSize="11sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.342"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.195"
-                tools:ignore="HardcodedText,SmallSp" />
+    <Button
+        android:id="@+id/button"
+        android:layout_width="84dp"
+        android:layout_height="24dp"
+        android:background="@drawable/rounded_corners"
+        android:padding="0dp"
+        android:text="Meat"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.048"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.195"
+        tools:ignore="HardcodedText,SmallSp" />
 
-            <Button
-                android:id="@+id/button8"
-                android:background="@drawable/rounded_corners"
-                android:layout_width="84dp"
-                android:layout_height="24dp"
-                android:padding="0dp"
-                android:text="Hair"
-                android:textSize="11sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.636"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.195"
-                tools:ignore="HardcodedText,SmallSp" />
+    <Button
+        android:id="@+id/button6"
+        android:background="@drawable/rounded_corners"
+        android:layout_width="84dp"
+        android:layout_height="24dp"
+        android:padding="0dp"
+        android:text="Cosmetics"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.926"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.195"
+        tools:ignore="HardcodedText" />
 
-            <Button
-                android:id="@+id/button"
-                android:layout_width="84dp"
-                android:layout_height="24dp"
-                android:background="@drawable/rounded_corners"
-                android:padding="0dp"
-                android:text="Meat"
-                android:textSize="11sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.048"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.195"
-                tools:ignore="HardcodedText,SmallSp" />
-
-            <Button
-                android:id="@+id/button6"
-                android:background="@drawable/rounded_corners"
-                android:layout_width="84dp"
-                android:layout_height="24dp"
-                android:padding="0dp"
-                android:text="Cosmetics"
-                android:textSize="11sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.926"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.195"
-                tools:ignore="HardcodedText" />
-
-
-        </LinearLayout>
-    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
