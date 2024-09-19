@@ -9,23 +9,23 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.gwabo.databinding.FragmentNotificationsBinding;
-import com.example.gwabo.ui.notifications.NotificationsViewModel;
+import com.example.gwabo.databinding.FragmentOrdersBinding;
+import com.example.gwabo.ui.orders.OrdersViewModel;
 
 public class OrdersFragment extends Fragment {
 
-    private FragmentNotificationsBinding binding;
+    private FragmentOrdersBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        NotificationsViewModel notificationsViewModel =
-                new ViewModelProvider(this).get(NotificationsViewModel.class);
+        OrdersViewModel ordersViewModel =
+                new ViewModelProvider(this).get(OrdersViewModel.class);
 
-        binding = FragmentNotificationsBinding.inflate(inflater, container, false);
+        binding = FragmentOrdersBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        // final TextView textView = binding.textNotifications;
-        // notificationsViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        // final TextView textView = binding.textOrders;
+        // ordersViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 
