@@ -25,7 +25,7 @@
 
     <fragment
         android:id="@+id/navigation_orders_list"
-        android:name="com.example.gwabo.ui.notifications.NotificationsFragment"
+        android:name="com.example.gwabo.ui.orders.OrdersFragment"
         android:label="@string/title_orders_list"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_orders" />
 </navigation>
