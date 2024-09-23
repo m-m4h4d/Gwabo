@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -19,18 +20,28 @@
         android:id="@+id/btnRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Inscrivez-vous en 2 minutes"
-        android:layout_marginTop="20dp"
-        android:textColor="#ffffff"
-        android:backgroundTint="#ff4a00"
+        android:text="Register in 2 minutes"
+        android:layout_marginTop="50dp"
+        android:backgroundTint="#FFFFFF"
+        android:textColor="#000000"
         tools:ignore="HardcodedText" />
 
     <Button
-        android:id="@+id/btnGoogleApple"
+        android:id="@+id/btnGoogle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="S'inscrire avec Google ou Apple"
-        android:drawableStart="@drawable/google_icon"
+        android:text="Register with Google"
+        android:drawableEnd="@drawable/google_icon"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="#FFFFFF"
+        android:textColor="#000000"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/btnApple"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Register with Apple"
         android:drawableEnd="@drawable/apple_icon"
         android:layout_marginTop="10dp"
         android:backgroundTint="#FFFFFF"
@@ -41,43 +52,79 @@
         android:id="@+id/btnFacebook"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="S'inscrire avec Facebook"
-        android:drawableStart="@drawable/facebook_icon"
+        android:text="Register with Facebook"
+        android:drawableEnd="@drawable/facebook_icon"
         android:layout_marginTop="10dp"
         android:backgroundTint="#FFFFFF"
         android:textColor="#000000"
         tools:ignore="HardcodedText" />
 
-    <Button
-        android:id="@+id/btnLogin"
+    <!-- Email Field -->
+    <EditText
+        android:id="@+id/emailEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Se connecter"
+        android:hint="Enter Email"
+        android:importantForAutofill="no"
+        android:inputType="textEmailAddress"
+        android:padding="10dp"
+        android:backgroundTint="#FF4A00"
+        android:layout_marginVertical="16dp"
+        tools:ignore="HardcodedText" />
+
+    <!-- Password Field -->
+    <EditText
+        android:id="@+id/passwordEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Password"
+        android:importantForAutofill="no"
+        android:inputType="textPassword"
+        android:padding="10dp"
+        android:backgroundTint="#FF4A00"
+        android:layout_marginVertical="16dp"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Log in"
         android:layout_marginTop="20dp"
+        android:paddingHorizontal="90dp"
+        android:background="@drawable/round_corner"
         android:backgroundTint="#ff4a00"
         android:textColor="#ffffff"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="I already have a GWABO account"
         tools:ignore="HardcodedText" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="20dp"
+        android:gravity="bottom"
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Assistance"
-            android:textColor="#0000FF"
-            android:layout_marginEnd="20dp"
+            android:layout_marginEnd="200dp"
+            android:text="Support"
+            android:textColor="@color/main_200"
+            app:drawableStartCompat="@drawable/baseline_support_agent_24"
             tools:ignore="HardcodedText" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Langues"
-            android:textColor="#0000FF"
+            android:text="Languages"
+            android:textColor="@color/main_200"
+            app:drawableStartCompat="@drawable/baseline_language_24"
             tools:ignore="HardcodedText" />
 
     </LinearLayout>

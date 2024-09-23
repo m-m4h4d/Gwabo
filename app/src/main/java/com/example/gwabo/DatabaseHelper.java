@@ -1,6 +1,7 @@
 package com.example.gwabo;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -70,5 +71,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS order_items");
 
         onCreate(db);
+    }
+
+    public Cursor getAllUsers() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM users";
+        return db.rawQuery(query, null);
     }
 }

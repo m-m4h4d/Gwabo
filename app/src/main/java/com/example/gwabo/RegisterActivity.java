@@ -2,8 +2,11 @@ package com.example.gwabo;
 
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
+import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -57,5 +60,29 @@ public class RegisterActivity extends AppCompatActivity {
         } else {
             Toast.makeText(this, "Registration Failed", Toast.LENGTH_SHORT).show();
         }
+        // Inside RegisterActivity.java, after successful registration
+        DatabaseHelper helper = new DatabaseHelper(this);
+
+        // Fetching all users
+        Cursor cursor = helper.getAllUsers();
+
+        if (cursor.getCount() == 0) {
+            Toast.makeText(this, "No users found", Toast.LENGTH_SHORT).show();
+        } else {
+            StringBuilder usersData = new StringBuilder();
+            while (cursor.moveToNext()) {
+                usersData.append("ID: ").append(cursor.getString(0)).append("\n");
+                usersData.append("Username: ").append(cursor.getString(1)).append("\n");
+                usersData.append("Email: ").append(cursor.getString(2)).append("\n");
+                usersData.append("Password: ").append(cursor.getString(3)).append("\n\n");
+            }
+            // Display the data in a Toast message or log it
+            Toast.makeText(this, usersData.toString(), Toast.LENGTH_LONG).show();
+            Log.d("UserRecords", usersData.toString());
+        }
+        cursor.close();
+
+        Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+        startActivity(intent);
     }
 }

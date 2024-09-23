@@ -1,3 +1,3 @@
 # Gwabo
 
-## Afro Caribbean MArket
+## Afro Caribbean Market
