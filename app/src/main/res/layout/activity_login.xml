@@ -38,17 +38,6 @@
         tools:ignore="HardcodedText" />
 
     <Button
-        android:id="@+id/btnApple"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Register with Apple"
-        android:drawableEnd="@drawable/apple_icon"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="#FFFFFF"
-        android:textColor="#000000"
-        tools:ignore="HardcodedText" />
-
-    <Button
         android:id="@+id/btnFacebook"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

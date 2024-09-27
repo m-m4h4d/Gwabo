@@ -1,7 +1,6 @@
 package com.example.gwabo;
 
 import android.annotation.SuppressLint;
-import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -19,7 +18,6 @@ public class LoginActivity extends AppCompatActivity {
 
     private DatabaseHelper dbHelper;
     private EditText emailEditText, passwordEditText;
-    private Button loginButton, registerButton;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -34,8 +32,8 @@ public class LoginActivity extends AppCompatActivity {
         // Initialize the UI elements
         emailEditText = findViewById(R.id.emailEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
-        loginButton = findViewById(R.id.btnLogin);
-        registerButton = findViewById(R.id.btnRegister);
+        Button loginButton = findViewById(R.id.btnLogin);
+        Button registerButton = findViewById(R.id.btnRegister);
 
         // Set onClickListener for login button
         loginButton.setOnClickListener(new View.OnClickListener() {

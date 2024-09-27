@@ -95,30 +95,15 @@
         app:layout_constraintVertical_bias="0.521"
         tools:ignore="ContentDescription" />
 
-    <FrameLayout
-        android:layout_width="84dp"
-        android:layout_height="71dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/rounded_corners"
-        android:padding="10dp"
-        app:circularflow_defaultRadius="10dp"
-        app:circularflow_radiusInDP="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintCircleRadius="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.048"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.284">
-
-        <ImageView
-            android:id="@+id/imageView0"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@null"
-            android:src="@drawable/apki" />
-
-    </FrameLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewProducts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_product"
+        tools:ignore="MissingConstraints" />
 
     <FrameLayout
         android:id="@+id/frameLayout"
@@ -160,6 +145,31 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.356"
         tools:ignore="HardcodedText" />
+
+    <FrameLayout
+        android:layout_width="84dp"
+        android:layout_height="71dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/rounded_corners"
+        android:padding="10dp"
+        app:circularflow_defaultRadius="10dp"
+        app:circularflow_radiusInDP="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintCircleRadius="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.048"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.284">
+
+        <ImageView
+            android:id="@+id/imageView0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@null"
+            android:src="@drawable/apki" />
+
+    </FrameLayout>
 
     <FrameLayout
         android:layout_width="84dp"

@@ -1,9 +1,14 @@
 package com.example.gwabo;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import com.example.gwabo.model.Product;
+
+import java.util.ArrayList;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -78,4 +83,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String query = "SELECT * FROM users";
         return db.rawQuery(query, null);
     }
+
+    @SuppressLint("Range")
+    public ArrayList<Product> getAllProducts() {
+        ArrayList<Product> products = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM products", null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                Product product = new Product();
+                product.setId(cursor.getInt(cursor.getColumnIndex("id")));
+                product.setName(cursor.getString(cursor.getColumnIndex("name")));
+                product.setImage(cursor.getString(cursor.getColumnIndex("image")));
+                // Add any additional product fields
+
+                products.add(product);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        return products;
+    }
+
 }
