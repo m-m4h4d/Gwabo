@@ -18,7 +18,10 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
             android:layout_marginBottom="10dp"
+            android:layout_gravity="center_horizontal"
+            android:paddingHorizontal="10dp"
             android:background="@color/white">
 
             <Button
@@ -46,12 +49,10 @@
                 tools:ignore="HardcodedText,SmallSp" />
 
             <TextView
-                android:id="@+id/textView11"
+                android:id="@+id/product_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="200dp"
                 android:layout_marginTop="25dp"
-                android:text="$ 6.99"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 tools:ignore="HardcodedText,SmallSp" />
@@ -69,11 +70,10 @@
 
             <TextView
                 android:id="@+id/textView12"
-                android:layout_width="200dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="200dp"
                 android:layout_marginTop="50dp"
-                android:text="The tomato fruit is globular or ovoid."
+                android:text="The tomato fruit is globular or ovoid. Botanically, the fruit exhibits all of the common characteristics of berries; a simple fleshy fruit that encloses its seed in the pulp. "
                 android:textSize="16sp"
                 tools:ignore="HardcodedText,SmallSp" />
 
@@ -130,12 +130,11 @@
         app:layout_constraintVertical_bias="0.001">
 
         <TextView
-            android:id="@+id/textView7"
+            android:id="@+id/product_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="151dp"
             android:background="#464643"
-            android:text="Africa Best Khabab Pepper"
             android:textColor="@color/white"
             android:textSize="10sp"
             tools:ignore="HardcodedText,SmallSp" />
@@ -144,9 +143,9 @@
             android:id="@+id/imageView18"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
             android:layout_marginTop="20dp"
             android:contentDescription="@null"
+            android:layout_gravity="center_horizontal"
             android:src="@drawable/tomato" />
 
     </FrameLayout>

@@ -18,6 +18,7 @@
             android:label="Splash"/>
         <activity android:name=".LoginActivity"/>
         <activity android:name=".RegisterActivity"/>
+        <activity android:name=".ProductDetailActivity"/>
         <activity
             android:name=".SplashActivity"
             android:exported="true">

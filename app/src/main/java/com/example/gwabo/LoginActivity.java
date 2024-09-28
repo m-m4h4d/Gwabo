@@ -17,7 +17,7 @@ import java.util.Objects;
 public class LoginActivity extends AppCompatActivity {
 
     private DatabaseHelper dbHelper;
-    private EditText emailEditText, passwordEditText;
+    private EditText nameEditText, passwordEditText;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -30,7 +30,7 @@ public class LoginActivity extends AppCompatActivity {
         dbHelper = new DatabaseHelper(this);
 
         // Initialize the UI elements
-        emailEditText = findViewById(R.id.emailEditText);
+        nameEditText = findViewById(R.id.nameEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
         Button loginButton = findViewById(R.id.btnLogin);
         Button registerButton = findViewById(R.id.btnRegister);
@@ -55,12 +55,12 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void loginUser() {
-        String email = emailEditText.getText().toString();
+        String username = nameEditText.getText().toString();
         String password = passwordEditText.getText().toString();
 
         // Query the database for the user
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM users WHERE email = ? AND password = ?", new String[]{email, password});
+        Cursor cursor = db.rawQuery("SELECT * FROM users WHERE username = ? AND password = ?", new String[]{username, password});
 
         if (cursor != null && cursor.moveToFirst()) {
             // Login successful
@@ -70,7 +70,7 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(intent);
         } else {
             // Login failed
-            Toast.makeText(this, "Invalid email or password", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Invalid username or password", Toast.LENGTH_SHORT).show();
         }
 
         if (cursor != null) {

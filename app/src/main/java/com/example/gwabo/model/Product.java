@@ -1,21 +1,32 @@
 package com.example.gwabo.model;
 
-public class Product {
+import java.io.Serializable;
+
+public class Product implements Serializable {
     private int id;
     private String name;
     private String imageUrl;
     private int image;
+    private double price;
+    private int stock;
+    private String description;
 
-    public Product(int id, String name, String imageUrl) {
+    public Product(int id, String name, String imageUrl, double price, int stock, String description) {
         this.id = id;
         this.name = name;
         this.imageUrl = imageUrl;
+        this.price = price;
+        this.stock = stock;
+        this.description = description;
     }
 
-    public Product(int id, String name, int image) {
+    public Product(int id, String name, int image, double price, int stock, String description) {
         this.id = id;
         this.name = name;
         this.image = image;
+        this.price = price;
+        this.stock = stock;
+        this.description = description;
     }
 
     public Product() {
@@ -52,5 +63,29 @@ public class Product {
 
     public int getImage() {
         return image;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+
+    public int getStock() {
+        return stock;
     }
 }
