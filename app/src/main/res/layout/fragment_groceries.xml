@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.groceries.GroceriesFragment">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -12,30 +14,33 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="48dp"
             android:paddingBottom="64dp"
             android:orientation="vertical">
+
             <ImageView
                 android:id="@+id/imageView6"
-                android:layout_width="409dp"
-                android:layout_height="64dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_margin="0dp"
+                android:padding="0dp"
                 android:src="@drawable/top"
+                android:layout_gravity="center"
                 android:background="@color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.092"
                 tools:ignore="ContentDescription" />
-            <LinearLayout
+
+            <GridLayout
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
                 android:padding="0dp"
+                android:background="@color/white"
+                android:layout_gravity="center"
                 android:orientation="horizontal">
+
                 <Button
                     android:id="@+id/button7"
                     android:background="@drawable/rounded_corners"
@@ -45,13 +50,8 @@
                     android:text="Spices"
                     android:textSize="11sp"
                     android:layout_margin="10dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.342"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.195"
                     tools:ignore="ButtonStyle,HardcodedText,SmallSp" />
+
                 <Button
                     android:id="@+id/button8"
                     android:background="@drawable/rounded_corners"
@@ -61,13 +61,8 @@
                     android:text="Hair"
                     android:textSize="11sp"
                     android:layout_margin="10dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.636"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.195"
                     tools:ignore="ButtonStyle,HardcodedText,SmallSp" />
+
                 <Button
                     android:id="@+id/button"
                     android:layout_width="84dp"
@@ -77,13 +72,8 @@
                     android:text="Meat"
                     android:textSize="11sp"
                     android:layout_margin="10dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.048"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.195"
                     tools:ignore="ButtonStyle,HardcodedText,SmallSp" />
+
                 <Button
                     android:id="@+id/button6"
                     android:layout_width="84dp"
@@ -93,343 +83,19 @@
                     android:text="Cosmetics"
                     android:textSize="11sp"
                     android:layout_margin="10dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.926"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.195"
                     tools:ignore="ButtonStyle,HardcodedText" />
-            </LinearLayout>
-            <LinearLayout
+
+            </GridLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/groceries_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:background="#EBEBEB">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:paddingHorizontal="10dp"
-                    android:background="@color/white"
-                    android:layout_marginBottom="8dp"
-                    android:orientation="horizontal">
-                    <FrameLayout
-                        android:layout_width="175dp"
-                        android:layout_height="165dp"
-                        android:background="#F8F7F7"
-                        android:layout_margin="12dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.12"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.325">
-                        <TextView
-                            android:id="@+id/textView7"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Africa Best Khabab Pepper"
-                            android:layout_marginTop="150dp"
-                            android:background="@color/black"
-                            android:textColor="@color/white"
-                            android:textSize="10sp"
-                            tools:ignore="HardcodedText,SmallSp" />
-                        <TextView
-                            android:id="@+id/textView20"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="$ 4.33 / lbs"
-                            android:layout_marginTop="150dp"
-                            android:layout_marginStart="124dp"
-                            android:background="@color/main_500"
-                            android:textColor="@color/white"
-                            android:textSize="10sp"
-                            tools:ignore="HardcodedText,SmallSp" />
-                        <TextView
-                            android:id="@+id/textView2"
-                            android:layout_width="103dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="87dp"
-                            android:background="#F8DD14"
-                            android:paddingHorizontal="4dp"
-                            android:paddingVertical="2dp"
-                            android:text="ADD TO LIST"
-                            tools:ignore="HardcodedText" />
-                        <ImageView
-                            android:id="@+id/imageView18"
-                            android:layout_margin="48dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:contentDescription="@null"
-                            android:src="@drawable/apki" />
-                    </FrameLayout>
-                    <FrameLayout
-                        android:layout_width="175dp"
-                        android:layout_height="165dp"
-                        android:background="#F8F7F7"
-                        android:layout_margin="12dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.9"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.325">
-                        <TextView
-                            android:id="@+id/textView13"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="124dp"
-                            android:layout_marginTop="150dp"
-                            android:background="@color/main_500"
-                            android:text="$ 4.33 / lbs"
-                            android:textColor="@color/white"
-                            android:textSize="10sp"
-                            tools:ignore="HardcodedText,SmallSp" />
-                        <TextView
-                            android:id="@+id/textView14"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="150dp"
-                            android:background="@color/black"
-                            android:text="Africa Best Khabab Pepper"
-                            android:textColor="@color/white"
-                            android:textSize="10sp"
-                            tools:ignore="HardcodedText,SmallSp" />
-                        <TextView
-                            android:id="@+id/textView3"
-                            android:layout_width="103dp"
-                            android:layout_height="wrap_content"
-                            android:background="#F8DD14"
-                            android:paddingHorizontal="4dp"
-                            android:paddingVertical="2dp"
-                            android:text="ADD TO LIST"
-                            android:layout_marginStart="87dp"
-                            tools:ignore="HardcodedText" />
-                        <ImageView
-                            android:id="@+id/imageView19"
-                            android:layout_margin="48dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:contentDescription="@null"
-                            android:src="@drawable/apki" />
-                    </FrameLayout>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:background="@color/white"
-                    android:layout_marginBottom="8dp"
-                    android:paddingHorizontal="10dp">
-                    <FrameLayout
-                        android:layout_width="175dp"
-                        android:layout_height="165dp"
-                        android:background="#F8F7F7"
-                        android:layout_margin="12dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.9"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.636">
-                        <TextView
-                            android:id="@+id/textView15"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="124dp"
-                            android:layout_marginTop="150dp"
-                            android:background="@color/main_500"
-                            android:text="$ 4.33 / lbs"
-                            android:textColor="@color/white"
-                            android:textSize="10sp"
-                            tools:ignore="HardcodedText,SmallSp" />
-                        <TextView
-                            android:id="@+id/textView16"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="150dp"
-                            android:background="@color/black"
-                            android:text="Africa Best Khabab Pepper"
-                            android:textColor="@color/white"
-                            android:textSize="10sp"
-                            tools:ignore="HardcodedText,SmallSp" />
-                        <TextView
-                            android:id="@+id/textView4"
-                            android:layout_width="103dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="87dp"
-                            android:background="#F8DD14"
-                            android:paddingHorizontal="4dp"
-                            android:paddingVertical="2dp"
-                            android:text="ADD TO LIST"
-                            tools:ignore="HardcodedText" />
-                        <ImageView
-                            android:id="@+id/imageView20"
-                            android:layout_margin="48dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:contentDescription="@null"
-                            android:src="@drawable/apki" />
-                    </FrameLayout>
-                    <FrameLayout
-                        android:layout_width="175dp"
-                        android:layout_height="165dp"
-                        android:background="#F8F7F7"
-                        android:layout_margin="12dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.12"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.636">
-                        <TextView
-                            android:id="@+id/textView17"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="124dp"
-                            android:layout_marginTop="150dp"
-                            android:background="@color/main_500"
-                            android:text="$ 4.33 / lbs"
-                            android:textColor="@color/white"
-                            android:textSize="10sp"
-                            tools:ignore="HardcodedText,SmallSp" />
-                        <TextView
-                            android:id="@+id/textView18"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="150dp"
-                            android:background="@color/black"
-                            android:text="Africa Best Khabab Pepper"
-                            android:textColor="@color/white"
-                            android:textSize="10sp"
-                            tools:ignore="HardcodedText,SmallSp" />
-                        <TextView
-                            android:id="@+id/textView5"
-                            android:layout_width="103dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="87dp"
-                            android:background="#F8DD14"
-                            android:paddingHorizontal="4dp"
-                            android:paddingVertical="2dp"
-                            android:text="ADD TO LIST"
-                            tools:ignore="HardcodedText" />
-                        <ImageView
-                            android:id="@+id/imageView21"
-                            android:layout_margin="48dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:contentDescription="@null"
-                            android:src="@drawable/apki" />
-                    </FrameLayout>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:paddingHorizontal="10dp"
-                    android:background="@color/white"
-                    android:layout_marginBottom="8dp">
-                    <FrameLayout
-                        android:layout_width="175dp"
-                        android:layout_height="165dp"
-                        android:background="#F8F7F7"
-                        android:layout_margin="12dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.9"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.945">
-                        <TextView
-                            android:id="@+id/textView19"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="124dp"
-                            android:layout_marginTop="150dp"
-                            android:background="@color/main_500"
-                            android:text="$ 4.33 / lbs"
-                            android:textColor="@color/white"
-                            android:textSize="10sp"
-                            tools:ignore="HardcodedText,SmallSp" />
-                        <TextView
-                            android:id="@+id/textView21"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="150dp"
-                            android:background="@color/black"
-                            android:text="Africa Best Khabab Pepper"
-                            android:textColor="@color/white"
-                            android:textSize="10sp"
-                            tools:ignore="HardcodedText,SmallSp" />
-                        <TextView
-                            android:id="@+id/textView0"
-                            android:layout_width="103dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="87dp"
-                            android:background="#F8DD14"
-                            android:paddingHorizontal="4dp"
-                            android:paddingVertical="2dp"
-                            android:text="ADD TO LIST"
-                            tools:ignore="HardcodedText" />
-                        <ImageView
-                            android:id="@+id/imageView22"
-                            android:layout_margin="48dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:contentDescription="@null"
-                            android:src="@drawable/apki" />
-                    </FrameLayout>
-                    <FrameLayout
-                        android:layout_width="175dp"
-                        android:layout_height="165dp"
-                        android:background="#F8F7F7"
-                        android:layout_margin="12dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.118"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.945">
-                        <TextView
-                            android:id="@+id/textView22"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="124dp"
-                            android:layout_marginTop="150dp"
-                            android:background="@color/main_500"
-                            android:text="$ 4.33 / lbs"
-                            android:textColor="@color/white"
-                            android:textSize="10sp"
-                            tools:ignore="HardcodedText,SmallSp" />
-                        <TextView
-                            android:id="@+id/textView23"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="150dp"
-                            android:background="@color/black"
-                            android:text="Africa Best Khabab Pepper"
-                            android:textColor="@color/white"
-                            android:textSize="10sp"
-                            tools:ignore="HardcodedText,SmallSp" />
-                        <TextView
-                            android:id="@+id/textView1"
-                            android:layout_width="103dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="87dp"
-                            android:background="#F8DD14"
-                            android:paddingHorizontal="4dp"
-                            android:paddingVertical="2dp"
-                            android:text="ADD TO LIST"
-                            tools:ignore="HardcodedText" />
-                        <ImageView
-                            android:id="@+id/imageView23"
-                            android:layout_margin="48dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:contentDescription="@null"
-                            android:src="@drawable/apki" />
-                    </FrameLayout>
-                </LinearLayout>
-            </LinearLayout>
+                android:paddingVertical="16dp"
+                android:paddingHorizontal="8dp"
+                android:layout_margin="0dp"
+                tools:listitem="@layout/item_grocery" />
+
             <TextView
                 android:id="@+id/textView6"
                 android:layout_width="match_parent"
@@ -437,169 +103,9 @@
                 android:text="Groceries that may interest you"
                 android:layout_margin="10dp"
                 tools:ignore="HardcodedText" />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:paddingHorizontal="8dp">
-                <FrameLayout
-                    android:layout_width="84dp"
-                    android:layout_height="71dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/rounded_corners"
-                    android:padding="10dp"
-                    app:circularflow_defaultRadius="10dp"
-                    app:circularflow_radiusInDP="16dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintCircleRadius="10dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.048"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.746"
-                    android:layout_margin="8dp">
-                    <ImageView
-                        android:id="@+id/imageView7"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:contentDescription="@null"
-                        android:src="@drawable/apki" />
-                </FrameLayout>
-                <FrameLayout
-                    android:layout_width="84dp"
-                    android:layout_height="71dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/rounded_corners"
-                    android:padding="10dp"
-                    app:circularflow_defaultRadius="10dp"
-                    app:circularflow_radiusInDP="16dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintCircleRadius="10dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.926"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.747"
-                    android:layout_margin="8dp">
-                    <ImageView
-                        android:id="@+id/imageView13"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:contentDescription="@null"
-                        android:src="@drawable/apki" />
-                </FrameLayout>
-                <FrameLayout
-                    android:layout_width="84dp"
-                    android:layout_height="71dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/rounded_corners"
-                    android:padding="10dp"
-                    app:circularflow_defaultRadius="10dp"
-                    app:circularflow_radiusInDP="16dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintCircleRadius="10dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.342"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.746"
-                    android:layout_margin="8dp">
-                    <ImageView
-                        android:id="@+id/imageView5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:contentDescription="@null"
-                        android:src="@drawable/apki" />
-                </FrameLayout>
-                <FrameLayout
-                    android:layout_width="84dp"
-                    android:layout_height="71dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/rounded_corners"
-                    android:padding="10dp"
-                    app:circularflow_defaultRadius="10dp"
-                    app:circularflow_radiusInDP="16dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintCircleRadius="10dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.636"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.747"
-                    android:layout_margin="8dp">
-                    <ImageView
-                        android:id="@+id/imageView12"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:contentDescription="@null"
-                        android:src="@drawable/apki" />
-                </FrameLayout>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-                <TextView
-                    android:id="@+id/text_home9"
-                    android:layout_width="68dp"
-                    android:layout_height="wrap_content"
-                    android:text="Tomatoes"
-                    android:textAlignment="center"
-                    android:textSize="14sp"
-                    android:layout_marginHorizontal="22dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.069"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.92"
-                    tools:ignore="HardcodedText" />
-                <TextView
-                    android:id="@+id/text_home10"
-                    android:layout_width="68dp"
-                    android:layout_height="wrap_content"
-                    android:text="Tomatoes"
-                    android:textAlignment="center"
-                    android:textSize="14sp"
-                    android:layout_marginHorizontal="12dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.349"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.919"
-                    tools:ignore="HardcodedText" />
-                <TextView
-                    android:id="@+id/text_home11"
-                    android:layout_width="68dp"
-                    android:layout_height="wrap_content"
-                    android:text="Tomatoes"
-                    android:textAlignment="center"
-                    android:textSize="14sp"
-                    android:layout_marginHorizontal="18dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.635"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.919"
-                    tools:ignore="HardcodedText" />
-                <TextView
-                    android:id="@+id/text_home12"
-                    android:layout_width="68dp"
-                    android:layout_height="wrap_content"
-                    android:text="Tomatoes"
-                    android:textAlignment="center"
-                    android:textSize="14sp"
-                    android:layout_marginHorizontal="16dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.906"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.919"
-                    tools:ignore="HardcodedText" />
-            </LinearLayout>
+
         </LinearLayout>
+
     </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
