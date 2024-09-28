@@ -95,8 +95,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 Product product = new Product();
                 product.setId(cursor.getInt(cursor.getColumnIndex("id")));
                 product.setName(cursor.getString(cursor.getColumnIndex("name")));
-                product.setImage(cursor.getString(cursor.getColumnIndex("image")));
-                // Add any additional product fields
+                product.setImage(cursor.getInt(cursor.getColumnIndex("image")));
 
                 products.add(product);
             } while (cursor.moveToNext());

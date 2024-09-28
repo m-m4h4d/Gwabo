@@ -39,10 +39,10 @@ public class HomeFragment extends Fragment {
         List<Product> products = new ArrayList<>();
         // Add database logic here to retrieve products from your SQLite database
         // For now, let's assume we have hardcoded data
-        products.add(new Product(1, "Tomatoes", "https://example.com/tomato.png"));
-        products.add(new Product(2, "Malta", "https://example.com/malta.png"));
-        products.add(new Product(3, "APKI", "https://example.com/apki.png"));
-        products.add(new Product(4, "Atieke", "https://example.com/atieke.png"));
+        products.add(new Product(1, "Tomatoes", R.drawable.apki));
+        products.add(new Product(2, "Malta", R.drawable.apki));
+        products.add(new Product(3, "APKI", R.drawable.apki));
+        products.add(new Product(4, "Atieke", R.drawable.apki));
 
         return products;
     }

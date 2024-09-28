@@ -4,11 +4,18 @@ public class Product {
     private int id;
     private String name;
     private String imageUrl;
+    private int image;
 
     public Product(int id, String name, String imageUrl) {
         this.id = id;
         this.name = name;
         this.imageUrl = imageUrl;
+    }
+
+    public Product(int id, String name, int image) {
+        this.id = id;
+        this.name = name;
+        this.image = image;
     }
 
     public Product() {
@@ -39,7 +46,11 @@ public class Product {
         this.imageUrl = imageUrl;
     }
 
-    public void setImage(String image) {
-        this.imageUrl = image;
+    public void setImage(int image) {
+        this.image = image;
+    }
+
+    public int getImage() {
+        return image;
     }
 }

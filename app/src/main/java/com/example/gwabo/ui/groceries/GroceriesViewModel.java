@@ -1,14 +1,14 @@
-package com.example.gwabo.ui.notifications;
+package com.example.gwabo.ui.groceries;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class NotificationsViewModel extends ViewModel {
+public class GroceriesViewModel extends ViewModel {
 
     private final MutableLiveData<String> mText;
 
-    public NotificationsViewModel() {
+    public GroceriesViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("");
     }
