@@ -9,18 +9,18 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.gwabo.databinding.FragmentNotificationsBinding;
+import com.example.gwabo.databinding.FragmentRestaurantsBinding;
 
 public class RestaurantsFragment extends Fragment {
 
-    private FragmentNotificationsBinding binding;
+    private FragmentRestaurantsBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         RestaurantsViewModel restaurantsViewModel =
                 new ViewModelProvider(this).get(RestaurantsViewModel.class);
 
-        binding = FragmentNotificationsBinding.inflate(inflater, container, false);
+        binding = FragmentRestaurantsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         // final TextView textView = binding.textNotifications;
