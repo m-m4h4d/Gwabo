@@ -46,6 +46,12 @@ dependencies {
     implementation(libs.activity)
     implementation(libs.picasso)
     implementation(libs.recyclerview)
+    implementation(libs.retrofit.core)     // Retrofit core library
+    implementation(libs.retrofit.gson)     // Retrofit Gson converter
+    implementation(libs.okhttp)            // OkHttp for networking (optional)
+    implementation(libs.okhttp.logging)    // OkHttp Logging Interceptor (optional)
+    implementation(libs.glide)
+    implementation(libs.glide.compiler)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)

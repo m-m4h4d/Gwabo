@@ -14,7 +14,7 @@
         android:layout_margin="12dp"
         android:background="#F8F7F7">
         <TextView
-            android:id="@+id/textView7"
+            android:id="@+id/grocery_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
@@ -24,7 +24,7 @@
             android:textColor="@color/white"
             android:textSize="12sp" />
         <TextView
-            android:id="@+id/textView20"
+            android:id="@+id/grocery_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="150dp"
@@ -43,7 +43,7 @@
             android:text="ADD TO LIST"
             tools:ignore="HardcodedText" />
         <ImageView
-            android:id="@+id/imageView18"
+            android:id="@+id/grocery_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

@@ -2,12 +2,16 @@ package com.example.gwabo;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.gwabo.model.Product;
+import com.squareup.picasso.Picasso;
 
 import java.util.Locale;
 import java.util.Objects;
@@ -42,8 +46,16 @@ public class ProductDetailActivity extends AppCompatActivity {
             productName.setText(product.getName());
             productDescription.setText(product.getDescription());
             productPrice.setText(String.format(Locale.getDefault(), "$%.2f", product.getPrice()));
-            productStock.setText("1");
-            productImage.setImageResource(product.getImage());
+            productStock.setText(String.valueOf(product.getStock()));
+            Log.d("ProductImage", "Image URL: " + product.getImage());
+            //productImage.setImageResource(product.getImage());
+            Glide.with(this)
+                    .load(product.getImageUrl())
+                    .placeholder(R.drawable.placeholder_image)
+                    .error(R.drawable.error_image)
+                    .skipMemoryCache(true)
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .into(productImage);
             if (product.getStock() > 0) {
                 instock.setText("In Stock");
                 instock.setTextColor(getResources().getColor(R.color.green));
