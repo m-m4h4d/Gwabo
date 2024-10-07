@@ -10,6 +10,7 @@ public class Product implements Serializable {
     private double price;
     private int stock;
     private String description;
+    private String category;
 
     public Product(int id, String name, String imageUrl, double price, int stock, String description) {
         this.id = id;
@@ -18,6 +19,7 @@ public class Product implements Serializable {
         this.price = price;
         this.stock = stock;
         this.description = description;
+        this.category = category;
     }
 
     public Product(int id, String name, int image, double price, int stock, String description) {
@@ -27,6 +29,7 @@ public class Product implements Serializable {
         this.price = price;
         this.stock = stock;
         this.description = description;
+        this.category = category;
     }
 
     public Product() {
@@ -88,4 +91,6 @@ public class Product implements Serializable {
     public int getStock() {
         return stock;
     }
+
+    public String getCategoryName() { return category; }
 }

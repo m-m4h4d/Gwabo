@@ -23,7 +23,7 @@ import java.util.List;
 public class GroceryAdapter extends RecyclerView.Adapter<GroceryAdapter.GroceryViewHolder> {
 
     private List<Product> groceryList;
-    private Context context;
+    private final Context context;
 
     public GroceryAdapter(List<Product> groceryList, Context context) {
         this.groceryList = groceryList;
@@ -62,11 +62,14 @@ public class GroceryAdapter extends RecyclerView.Adapter<GroceryAdapter.GroceryV
 
     @Override
     public int getItemCount() {
-        Log.d("GroceryAdapter", "getItemCount: " + groceryList.size());
         return groceryList.size();
     }
 
-    public class GroceryViewHolder extends RecyclerView.ViewHolder {
+    public void updateProductList(List<Product> newProductList) {
+        this.groceryList = newProductList;
+    }
+
+    public static class GroceryViewHolder extends RecyclerView.ViewHolder {
         TextView groceryName, groceryPrice;
         ImageView groceryImage;
 

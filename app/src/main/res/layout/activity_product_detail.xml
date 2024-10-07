@@ -26,6 +26,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/lato_regular"
                 android:layout_marginTop="160dp"
                 android:layout_marginHorizontal="30dp"
                 android:text="Buy Now"
@@ -35,13 +36,15 @@
                 android:id="@+id/add_to_cart_button"
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
+                android:fontFamily="@font/lato_regular"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="210dp"
                 android:layout_marginBottom="10dp"
                 android:backgroundTint="#F8DD12"
                 android:text="Add to List"
                 android:textColor="@color/black"
-                android:textSize="11sp"/>
+                android:textSize="11sp"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -98,16 +101,19 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/lato_regular"
                 android:layout_marginStart="50dp"
                 android:text="Deliver to Marius - Whitby L1R 2M5"
                 android:textSize="20sp"
-                android:textColor="#11425D"/>
+                android:textColor="#11425D"
+                tools:ignore="HardcodedText" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:background="@drawable/baseline_location_pin_24" />
+                android:background="@drawable/baseline_location_pin_24"
+                android:importantForAccessibility="no" />
 
         </FrameLayout>
 

@@ -11,16 +11,21 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gwabo.R;
+import com.example.gwabo.adapter.CategoryAdapter;
 import com.example.gwabo.adapter.GroceryAdapter;
 import com.example.gwabo.model.Product;
 import com.example.gwabo.network.ApiService;
 import com.google.gson.Gson;
 
 import java.lang.ref.Reference;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -30,9 +35,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class GroceriesFragment extends Fragment {
 
-    private RecyclerView recyclerView;
-    private GroceryAdapter adapter;
+    private RecyclerView recyclerView, categoryRecyclerView;
+    private GroceryAdapter groceryAdapter;
     private List<Product> productList;
+    private List<String> categoryList;
+    private CategoryAdapter categoryAdapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -51,22 +58,40 @@ public class GroceriesFragment extends Fragment {
 
         ApiService apiService = retrofit.create(ApiService.class);
 
-        // Make the network request to get the products
+        productList = new ArrayList<>();
+        groceryAdapter = new GroceryAdapter(productList, getContext());
+        recyclerView.setAdapter(groceryAdapter);
+
+        categoryRecyclerView = root.findViewById(R.id.categories);
+        categoryRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+
+        categoryList = new ArrayList<>();
+        categoryAdapter = new CategoryAdapter(categoryList, getContext(), this::filterProductsByCategory);
+        categoryRecyclerView.setAdapter(categoryAdapter);
+
+        loadGroceries(apiService);
+
+        return root;
+    }
+
+    private void loadGroceries(ApiService apiService) {
         apiService.getProducts().enqueue(new Callback<List<Product>>() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onResponse(@NonNull Call<List<Product>> call, @NonNull Response<List<Product>> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    // Get the product list from the response
-                    Log.d("APIResponse", new Gson().toJson(response.body()));
-                    productList = response.body();
+                    productList.clear();
+                    productList.addAll(response.body());
+                    Set<String> categoriesSet = new HashSet<>();
                     for (Product product : productList) {
-                        Log.d("ProductImage", "Image URL: " + product.getImageUrl());  // Assuming getImageUrl() returns the image URL
+                        categoriesSet.add(product.getCategoryName());
                     }
-                    // Initialize the adapter and set it to the RecyclerView
-                    adapter = new GroceryAdapter(productList, getContext());
-                    recyclerView.setAdapter(adapter);
-
+                    List<String> uniqueCategories = new ArrayList<>(categoriesSet);
+                    categoryAdapter.updateCategoryList(uniqueCategories);
+                    categoryAdapter.notifyDataSetChanged();
+//                    categoryList.clear();
+//                    categoryList.addAll(categoriesSet);
+                    groceryAdapter.notifyDataSetChanged();
                 } else {
                     Toast.makeText(getContext(), "Failed to get products", Toast.LENGTH_SHORT).show();
                 }
@@ -77,7 +102,20 @@ public class GroceriesFragment extends Fragment {
                 Toast.makeText(getContext(), "Error: " + t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
+    }
 
-        return root;
+    @SuppressLint("NotifyDataSetChanged")
+    private void filterProductsByCategory(String selectedCategoryName) {
+        Toast.makeText(getContext(), "Selected Category: " + selectedCategoryName, Toast.LENGTH_SHORT).show();
+
+        List<Product> filteredList = new ArrayList<>();
+        for (Product product : productList) {
+            if (product.getCategoryName().equals(selectedCategoryName)) {
+                filteredList.add(product);
+            }
+        }
+
+        groceryAdapter.updateProductList(filteredList);
+        groceryAdapter.notifyDataSetChanged();
     }
 }
