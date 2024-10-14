@@ -20,6 +20,11 @@ import com.example.gwabo.adapter.GroceryAdapter;
 import com.example.gwabo.model.Product;
 import com.example.gwabo.network.ApiService;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.lang.ref.Reference;
 import java.util.ArrayList;
@@ -27,6 +32,8 @@ import java.util.List;
 import java.util.HashSet;
 import java.util.Set;
 
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -50,10 +57,17 @@ public class GroceriesFragment extends Fragment {
         recyclerView = root.findViewById(R.id.groceries_recycler_view);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
 
+        // Initialize Gson
+        Gson gson = new GsonBuilder().setLenient().create();
+
         // Initialize Retrofit
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(logging).build();
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://darkblue-grouse-797601.hostingersite.com/") // Replace with your domain
-                .addConverterFactory(GsonConverterFactory.create())
+                .baseUrl("https://wavemediatech.ca/") // Replace with your domain
+                .client(client)
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 
         ApiService apiService = retrofit.create(ApiService.class);
@@ -80,18 +94,18 @@ public class GroceriesFragment extends Fragment {
             @Override
             public void onResponse(@NonNull Call<List<Product>> call, @NonNull Response<List<Product>> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    productList.clear();
-                    productList.addAll(response.body());
-                    Set<String> categoriesSet = new HashSet<>();
-                    for (Product product : productList) {
-                        categoriesSet.add(product.getCategoryName());
-                    }
-                    List<String> uniqueCategories = new ArrayList<>(categoriesSet);
-                    categoryAdapter.updateCategoryList(uniqueCategories);
-                    categoryAdapter.notifyDataSetChanged();
-//                    categoryList.clear();
-//                    categoryList.addAll(categoriesSet);
-                    groceryAdapter.notifyDataSetChanged();
+                        productList.clear();
+                        productList.addAll(response.body());
+                        Set<String> categoriesSet = new HashSet<>();
+                        for (Product product : productList) {
+                            categoriesSet.add(product.getCategoryName());
+                        }
+                        List<String> uniqueCategories = new ArrayList<>(categoriesSet);
+                        categoryAdapter.updateCategoryList(uniqueCategories);
+                        categoryAdapter.notifyDataSetChanged();
+                        categoryList.clear();
+                        categoryList.addAll(categoriesSet);
+                        groceryAdapter.notifyDataSetChanged();
                 } else {
                     Toast.makeText(getContext(), "Failed to get products", Toast.LENGTH_SHORT).show();
                 }

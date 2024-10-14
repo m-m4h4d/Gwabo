@@ -27,7 +27,7 @@
 //
 $servername = "localhost"; // e.g., localhost
 $username = "u744990913_serge";
-$password = "1|lNKd|+";
+$password = "Gwabo123";
 $dbname = "u744990913_gwabo";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
