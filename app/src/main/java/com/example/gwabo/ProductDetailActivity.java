@@ -6,28 +6,32 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.example.gwabo.model.CartManager;
 import com.example.gwabo.model.Product;
-import com.squareup.picasso.Picasso;
 
 import java.util.Locale;
-import java.util.Objects;
 
 public class ProductDetailActivity extends AppCompatActivity {
 
     private ImageView productImage;
     private TextView productName, productDescription, productPrice, productStock, instock;
     private Button addToCartButton;
-    private int quantity = 1;
+    private final int quantity = 1;
 
     @SuppressLint({"MissingInflatedId", "SetTextI18n", "ResourceType"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_detail);
+
+        CartManager.loadCart(this);
+        Log.d("Cart", "Cart size: " + CartManager.getCartSize());
 
         // Initialize views
         productImage = findViewById(R.id.product_image);
@@ -47,8 +51,7 @@ public class ProductDetailActivity extends AppCompatActivity {
             productDescription.setText(product.getDescription());
             productPrice.setText(String.format(Locale.getDefault(), "$%.2f", product.getPrice()));
             productStock.setText(String.valueOf(product.getStock()));
-            Log.d("ProductImage", "Image URL: " + product.getImage());
-            //productImage.setImageResource(product.getImage());
+            Log.d("ProductImage", "Image URL: " + product.getImageUrl());
             Glide.with(this)
                     .load(product.getImageUrl())
                     .placeholder(R.drawable.placeholder_image)
@@ -67,8 +70,17 @@ public class ProductDetailActivity extends AppCompatActivity {
 
         // Implement functionality to add to cart
         addToCartButton.setOnClickListener(view -> {
-            // Implement logic to add the item to the cart
-            // You can use a database or shared preferences to store the cart data
+            if (product != null) {
+                // Set initial quantity to 1 if not set
+                if (product.getQuantity() == 0) {
+                    product.setQuantity(quantity);
+                }
+                CartManager.addProductToCart(product, this);
+                Toast.makeText(ProductDetailActivity.this, product.getName() + " added to cart", Toast.LENGTH_SHORT).show();
+                Log.d("Cart", "Product added to cart. Cart size: " + CartManager.getCartSize());
+            } else {
+                Toast.makeText(ProductDetailActivity.this, "Failed to add product to cart", Toast.LENGTH_SHORT).show();
+            }
         });
     }
 }

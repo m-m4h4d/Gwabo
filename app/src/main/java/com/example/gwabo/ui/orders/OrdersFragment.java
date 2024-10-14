@@ -7,10 +7,12 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.gwabo.model.CartManager;
 import com.example.gwabo.databinding.FragmentOrdersBinding;
-import com.example.gwabo.ui.orders.OrdersViewModel;
+import com.example.gwabo.ui.cart.CartAdapter;
 
 public class OrdersFragment extends Fragment {
 
@@ -18,14 +20,16 @@ public class OrdersFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        OrdersViewModel ordersViewModel =
-                new ViewModelProvider(this).get(OrdersViewModel.class);
-
         binding = FragmentOrdersBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        // final TextView textView = binding.textOrders;
-        // ordersViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        RecyclerView cartRecyclerView = binding.cartRecyclerView;
+        cartRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        // Get cart items from CartManager and set the adapter
+        CartAdapter cartAdapter = new CartAdapter(CartManager.getCart(), getContext());
+        cartRecyclerView.setAdapter(cartAdapter);
+
         return root;
     }
 
