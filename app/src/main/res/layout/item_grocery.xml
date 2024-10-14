@@ -20,33 +20,37 @@
             android:layout_gravity="bottom">
             <TextView
                 android:id="@+id/grocery_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="129dp"
+                android:layout_height="25dp"
                 android:layout_gravity="start"
-                android:paddingHorizontal="8dp"
+                android:paddingVertical="4dp"
+                android:paddingHorizontal="2dp"
                 android:background="#464643"
                 android:textColor="@color/white"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                tools:ignore="RtlCompat" />
             <TextView
                 android:id="@+id/grocery_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="50dp"
+                android:layout_height="25dp"
+                android:paddingVertical="4dp"
                 android:background="@color/main_500"
                 android:textColor="@color/white"
                 android:layout_gravity="end"
-                android:paddingHorizontal="8dp"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:textAlignment="center"
+                tools:ignore="RtlCompat" />
         </FrameLayout>
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="8dp"
-            android:paddingVertical="2dp"
+            android:layout_height="20dp"
+            android:paddingVertical="1dp"
             android:background="#F8DD14"
             android:layout_gravity="end"
             android:text="ADD TO LIST"
-            android:fontFamily="@font/lato_regular"
-            tools:ignore="HardcodedText" />
+            android:textAlignment="center"
+            android:fontFamily="@font/lato_bold"
+            tools:ignore="HardcodedText,RtlCompat" />
         <ImageView
             android:id="@+id/grocery_image"
             android:layout_width="88dp"
