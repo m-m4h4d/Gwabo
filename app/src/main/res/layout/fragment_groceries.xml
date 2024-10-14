@@ -34,12 +34,54 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:listitem="@layout/category_button" />
+            <LinearLayout
+                android:id="@+id/layout1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal">
+                <Button
+                    android:id="@+id/button"
+                    android:layout_width="84dp"
+                    android:layout_height="35dp"
+                    android:fontFamily="@font/lato_regular"
+                    android:text="Meat"
+                    android:textSize="11sp"
+                    android:layout_marginHorizontal="8dp"
+                    tools:ignore="ButtonStyle,HardcodedText,SmallSp" />
+                <Button
+                    android:id="@+id/button7"
+                    android:layout_width="84dp"
+                    android:layout_height="35dp"
+                    android:fontFamily="@font/lato_regular"
+                    android:text="Spices"
+                    android:textSize="11sp"
+                    android:layout_marginHorizontal="8dp"
+                    tools:ignore="ButtonStyle,HardcodedText,SmallSp" />
+                <Button
+                    android:id="@+id/button8"
+                    android:layout_width="84dp"
+                    android:layout_height="35dp"
+                    android:fontFamily="@font/lato_regular"
+                    android:text="Hair"
+                    android:textSize="11sp"
+                    android:layout_marginHorizontal="8dp"
+                    tools:ignore="ButtonStyle,HardcodedText,SmallSp" />
+                <Button
+                    android:id="@+id/button6"
+                    android:layout_width="84dp"
+                    android:layout_height="35dp"
+                    android:fontFamily="@font/lato_regular"
+                    android:text="Cosmetics"
+                    android:textSize="11sp"
+                    android:layout_marginHorizontal="8dp"
+                    tools:ignore="ButtonStyle,HardcodedText,SmallSp" />
+            </LinearLayout>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/groceries_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingVertical="16dp"
-                android:paddingHorizontal="8dp"
                 android:layout_margin="0dp"
                 tools:listitem="@layout/item_grocery" />
         </LinearLayout>

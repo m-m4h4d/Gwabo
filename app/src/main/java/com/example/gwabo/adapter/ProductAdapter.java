@@ -1,15 +1,20 @@
 package com.example.gwabo.adapter;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.example.gwabo.ProductDetailActivity;
 import com.example.gwabo.R;
 import com.example.gwabo.model.Product;
 
@@ -18,21 +23,17 @@ import java.util.List;
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
 
     private List<Product> productList;
-    private OnProductClickListener onProductClickListener;
+    private final Context context;
 
-    public interface OnProductClickListener {
-        void onProductClick(Product product);
-    }
-
-    public ProductAdapter(List<Product> productList, OnProductClickListener listener) {
+    public ProductAdapter(List<Product> productList, Context context) {
         this.productList = productList;
-        this.onProductClickListener = listener;
+        this.context = context;
     }
 
     @NonNull
     @Override
     public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_product, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_product, parent, false);
         return new ProductViewHolder(view);
     }
 
@@ -40,7 +41,21 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     @Override
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
         Product product = productList.get(position);
-        holder.bind(product);
+        holder.productName.setText(product.getName());
+        Glide.with(context)
+                .load(product.getImageUrl())
+                .placeholder(R.drawable.placeholder_image)
+                .error(R.drawable.error_image)
+                .skipMemoryCache(true)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .into(holder.productImage);
+        Log.d("ProductImage", "Image URL: " + product.getImage());
+
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, ProductDetailActivity.class);
+            intent.putExtra("product", product);
+            context.startActivity(intent);
+        });
     }
 
     @Override
@@ -48,24 +63,18 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         return productList.size();
     }
 
-    public class ProductViewHolder extends RecyclerView.ViewHolder {
+    public void updateProductList(List<Product> newProductList) {
+        this.productList = newProductList;
+    }
 
-        public ImageView productImage;
-        public TextView productName;
+    public static class ProductViewHolder extends RecyclerView.ViewHolder {
+        TextView productName;
+        ImageView productImage;
 
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
-            productImage = itemView.findViewById(R.id.product_image);
             productName = itemView.findViewById(R.id.product_name);
-        }
-
-        @SuppressLint("SetTextI18n")
-        public void bind(Product product) {
-            productName.setText(product.getName());
-            productImage.setImageResource(product.getImage());
-
-            // Set the click listener on the itemView
-            itemView.setOnClickListener(v -> onProductClickListener.onProductClick(product));
+            productImage = itemView.findViewById(R.id.product_image);
         }
     }
 }

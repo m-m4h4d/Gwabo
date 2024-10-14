@@ -1,4 +1,5 @@
-package com.example.gwabo.adapter;// GroceryAdapter.java
+package com.example.gwabo.adapter;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -16,7 +17,6 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.gwabo.ProductDetailActivity;
 import com.example.gwabo.R;
 import com.example.gwabo.model.Product;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
