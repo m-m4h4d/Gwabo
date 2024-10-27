@@ -9,7 +9,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gwabo.R;
@@ -42,7 +42,7 @@ public class HomeFragment extends Fragment {
         // Initialize the RecyclerView
         RecyclerView recyclerView = root.findViewById(R.id.recyclerViewProducts);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 4));  // 2 columns for grid layout
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));  // 2 columns for grid layout
 
         // Initialize the product list
         productList = new ArrayList<>();

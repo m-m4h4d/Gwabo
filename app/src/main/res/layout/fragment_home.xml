@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.HomeFragment"
-    android:background="@color/white">
+    tools:context=".ui.home.HomeFragment">
 
     <ImageView
         android:id="@+id/imageView6"
@@ -14,56 +13,70 @@
         android:src="@drawable/top"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.09"
+        app:layout_constraintVertical_bias="0.07"
         tools:ignore="ContentDescription" />
 
-    <LinearLayout
-        android:id="@+id/layout1"
+    <HorizontalScrollView
+        android:id="@+id/categoryTabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/imageView6"
-        android:gravity="center_horizontal"
-        app:layout_constraintVertical_bias="0.175">
-        <Button
-            android:id="@+id/button"
+        app:layout_constraintTop_toBottomOf="@id/imageView6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingVertical="8dp"
+        android:scrollbarSize="0dp">
+
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:fontFamily="@font/lato_regular"
-            android:text="Meat"
-            android:textSize="11sp"
-            android:layout_marginHorizontal="4dp"
-            tools:ignore="ButtonStyle,HardcodedText,SmallSp" />
-        <Button
-            android:id="@+id/button7"
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:fontFamily="@font/lato_regular"
-            android:text="Spices"
-            android:textSize="11sp"
-            android:layout_marginHorizontal="4dp"
-            tools:ignore="ButtonStyle,HardcodedText,SmallSp" />
-        <Button
-            android:id="@+id/button8"
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:fontFamily="@font/lato_regular"
-            android:text="Hair"
-            android:textSize="11sp"
-            android:layout_marginHorizontal="4dp"
-            tools:ignore="ButtonStyle,HardcodedText,SmallSp" />
-        <Button
-            android:id="@+id/button6"
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:fontFamily="@font/lato_regular"
-            android:text="Cosmetics"
-            android:textSize="11sp"
-            android:layout_marginHorizontal="4dp"
-            tools:ignore="ButtonStyle,HardcodedText,SmallSp" />
-    </LinearLayout>
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingHorizontal="6dp">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingVertical="0dp"
+                android:text="Meat"
+                android:layout_marginHorizontal="6dp"
+                android:backgroundTint="@color/transparent"
+                android:textColor="@color/black"
+                android:fontFamily="@font/lato_regular"
+                tools:ignore="ButtonStyle,HardcodedText" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingVertical="0dp"
+                android:text="Spices"
+                android:layout_marginHorizontal="6dp"
+                android:fontFamily="@font/lato_regular"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/main_200"
+                tools:ignore="ButtonStyle,HardcodedText" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingVertical="0dp"
+                android:text="Hair"
+                android:layout_marginHorizontal="6dp"
+                android:backgroundTint="@color/transparent"
+                android:textColor="@color/black"
+                android:fontFamily="@font/lato_regular"
+                tools:ignore="ButtonStyle,HardcodedText" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingVertical="0dp"
+                android:text="Cosmetic"
+                android:layout_marginHorizontal="6dp"
+                android:backgroundTint="@color/transparent"
+                android:textColor="@color/black"
+                android:fontFamily="@font/lato_regular"
+                tools:ignore="ButtonStyle,HardcodedText" />
+        </LinearLayout>
+    </HorizontalScrollView>
 
     <TextView
         android:id="@+id/textView"
@@ -75,28 +88,28 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.07"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layout1"
+        app:layout_constraintTop_toBottomOf="@+id/categoryTabs"
         tools:ignore="HardcodedText" />
 
-    <FrameLayout
+    <HorizontalScrollView
         android:id="@+id/products"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:orientation="vertical"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView6"
-        app:layout_constraintVertical_bias="0.14">
+        app:layout_constraintVertical_bias="0.14"
+        android:scrollbarSize="0dp">
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewProducts"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/item_product" />
-    </FrameLayout>
+    </HorizontalScrollView>
 
     <FrameLayout
         android:layout_width="match_parent"
