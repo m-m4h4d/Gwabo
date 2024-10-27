@@ -5,17 +5,12 @@ import java.io.Serializable;
 public class Restaurant implements Serializable {
     private int id;
     private String name;
-    private String imageUrl;
+    private String image_url;
 
-    public Restaurant(int id, String name, String imageUrl, double price, int stock, String description, String category, int quantity) {
+    public Restaurant(int id, String name, String image_url) {
         this.id = id;
         this.name = name;
-        this.imageUrl = imageUrl;
-    }
-
-    public Restaurant(int id, String name, int image, double price, int stock, String description, String category) {
-        this.id = id;
-        this.name = name;
+        this.image_url = image_url;
     }
 
     public Restaurant() {
@@ -39,11 +34,11 @@ public class Restaurant implements Serializable {
     }
 
     public String getImageUrl() {
-        return imageUrl;
+        return image_url;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setImageUrl(String image_url) {
+        this.image_url = image_url;
     }
 
 }
