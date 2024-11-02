@@ -49,7 +49,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                 .skipMemoryCache(true)
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .into(holder.productImage);
-        Log.d("ProductImage", "Image URL: " + product.getImage());
 
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, ProductDetailActivity.class);

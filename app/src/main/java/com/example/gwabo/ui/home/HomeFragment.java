@@ -13,7 +13,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gwabo.R;
+import com.example.gwabo.adapter.CategoryAdapter;
 import com.example.gwabo.adapter.ProductAdapter;
+import com.example.gwabo.model.Category;
 import com.example.gwabo.model.Product;
 import com.example.gwabo.network.ApiService;
 import com.google.gson.Gson;
@@ -34,6 +36,9 @@ public class HomeFragment extends Fragment {
 
     private ProductAdapter productAdapter;
     private List<Product> productList;
+    private List<Product> displayedProducts;
+    private List<Category> categoryList;
+    private CategoryAdapter categoryAdapter;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -46,16 +51,9 @@ public class HomeFragment extends Fragment {
 
         // Initialize the product list
         productList = new ArrayList<>();
-        productAdapter = new ProductAdapter(productList, getContext());
-        recyclerView.setAdapter(productAdapter);
+        displayedProducts = new ArrayList<>();
+        productAdapter = new ProductAdapter(displayedProducts, getContext());
 
-        // Initialize Retrofit and load products
-        loadProductsFromApi();
-
-        return root;
-    }
-
-    private void loadProductsFromApi() {
         // Set up Retrofit
         Gson gson = new GsonBuilder().setLenient().create();
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
@@ -70,6 +68,30 @@ public class HomeFragment extends Fragment {
 
         ApiService apiService = retrofit.create(ApiService.class);
 
+        RecyclerView categoryRecyclerView = root.findViewById(R.id.categoryTabs);
+        categoryRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        categoryAdapter = new CategoryAdapter(categoryList, getContext(), new CategoryAdapter.OnCategoryClickListener() {
+            @Override
+            public void onCategoryClick(Integer categoryId) {
+                filterProductsByCategory(categoryId);
+            }
+
+            @Override
+            public void onCategoryClear() {
+                resetProductFilter();
+            }
+        });
+        categoryRecyclerView.setAdapter(categoryAdapter);
+        recyclerView.setAdapter(productAdapter);
+
+        // Initialize Retrofit and load products
+        loadProductsFromApi(apiService);
+        loadCategories(apiService);
+
+        return root;
+    }
+
+    private void loadProductsFromApi(ApiService apiService) {
         // Fetch products from the API
         apiService.getProducts().enqueue(new Callback<List<Product>>() {
             @SuppressLint("NotifyDataSetChanged")
@@ -78,7 +100,9 @@ public class HomeFragment extends Fragment {
                 if (response.isSuccessful() && response.body() != null) {
                     // Clear the current product list and add new products
                     productList.clear();
+                    displayedProducts.clear();
                     productList.addAll(response.body());
+                    displayedProducts.addAll(productList);
                     productAdapter.notifyDataSetChanged();  // Refresh the adapter
                 } else {
                     Toast.makeText(getContext(), "Failed to get products", Toast.LENGTH_SHORT).show();
@@ -90,5 +114,47 @@ public class HomeFragment extends Fragment {
                 Toast.makeText(getContext(), "Error: " + t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    private void loadCategories(ApiService apiService) {
+        apiService.getCategories().enqueue(new Callback<List<Category>>() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onResponse(@NonNull Call<List<Category>> call, @NonNull Response<List<Category>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    categoryAdapter.updateCategoryList(response.body());
+                    categoryAdapter.notifyDataSetChanged();
+                } else {
+                    Toast.makeText(getContext(), "Failed to get categories", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<List<Category>> call, @NonNull Throwable t) {
+                Toast.makeText(getContext(), "Error: " + t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private void filterProductsByCategory(Integer categoryId) {
+        displayedProducts.clear();
+        if (categoryId == null) {
+            displayedProducts.addAll(productList);
+        } else {
+            for (Product product : productList) {
+                if (product.getCategory_id() == categoryId) {
+                    displayedProducts.add(product);
+                }
+            }
+        }
+        productAdapter.notifyDataSetChanged();
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private void resetProductFilter() {
+        displayedProducts.clear();
+        displayedProducts.addAll(productList);
+        productAdapter.notifyDataSetChanged();
     }
 }

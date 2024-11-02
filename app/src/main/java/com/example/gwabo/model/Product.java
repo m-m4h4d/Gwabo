@@ -1,5 +1,7 @@
 package com.example.gwabo.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 public class Product implements Serializable {
@@ -11,6 +13,7 @@ public class Product implements Serializable {
     private int stock;
     private String description;
     private String category;
+    private int category_id;
     private int quantity;
 
     public Product(int id, String name, String imageUrl, double price, int stock, String description, String category, int quantity) {
@@ -94,7 +97,9 @@ public class Product implements Serializable {
         return stock;
     }
 
-    public String getCategoryName() { return category; }
+    public String getCategory() { return category; }
+
+    public int getCategory_id() { return category_id; }
 
     public int getQuantity() { return quantity; }
 
