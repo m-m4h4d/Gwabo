@@ -16,12 +16,10 @@ import com.example.gwabo.model.CartManager;
 import com.example.gwabo.model.Product;
 
 import java.util.Locale;
+import java.util.Objects;
 
 public class ProductDetailActivity extends AppCompatActivity {
 
-    private ImageView productImage;
-    private TextView productName, productDescription, productPrice, productStock, instock;
-    private Button addToCartButton;
     private final int quantity = 1;
 
     @SuppressLint({"MissingInflatedId", "SetTextI18n", "ResourceType"})
@@ -29,18 +27,27 @@ public class ProductDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_detail);
+        Objects.requireNonNull(getSupportActionBar()).hide();
+
+        ImageView iconBack = findViewById(R.id.icon_back);
+        iconBack.setOnClickListener(view -> finish());
+
+        TextView pageTitle = findViewById(R.id.page_title);
+        String pageTitleText = getIntent().getStringExtra("PAGE_TITLE");
+        if (pageTitleText != null) {
+            pageTitle.setText(pageTitleText);
+        }
 
         CartManager.loadCart(this);
-        Log.d("Cart", "Cart size: " + CartManager.getCartSize());
 
         // Initialize views
-        productImage = findViewById(R.id.product_image);
-        productName = findViewById(R.id.product_name);
-        productDescription = findViewById(R.id.product_description);
-        productPrice = findViewById(R.id.product_price);
-        productStock = findViewById(R.id.product_stock);
-        addToCartButton = findViewById(R.id.add_to_cart_button);
-        instock = findViewById(R.id.in_stock);
+        ImageView productImage = findViewById(R.id.product_image);
+        TextView productName = findViewById(R.id.product_name);
+        TextView productDescription = findViewById(R.id.product_description);
+        TextView productPrice = findViewById(R.id.product_price);
+        TextView productStock = findViewById(R.id.product_stock);
+        Button addToCartButton = findViewById(R.id.add_to_cart_button);
+        TextView instock = findViewById(R.id.in_stock);
 
         // Get product from intent
         Product product = (Product) getIntent().getSerializableExtra("product");
@@ -77,7 +84,6 @@ public class ProductDetailActivity extends AppCompatActivity {
                 }
                 CartManager.addProductToCart(product, this);
                 Toast.makeText(ProductDetailActivity.this, product.getName() + " added to cart", Toast.LENGTH_SHORT).show();
-                Log.d("Cart", "Product added to cart. Cart size: " + CartManager.getCartSize());
             } else {
                 Toast.makeText(ProductDetailActivity.this, "Failed to add product to cart", Toast.LENGTH_SHORT).show();
             }

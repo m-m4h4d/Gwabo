@@ -52,6 +52,7 @@ dependencies {
     implementation(libs.okhttp.logging)    // OkHttp Logging Interceptor (optional)
     implementation(libs.glide)
     implementation(libs.glide.compiler)
+    implementation(libs.ui.text.android)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)

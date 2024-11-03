@@ -60,6 +60,7 @@ public class RestaurantsFragment extends Fragment {
         RestaurantsAdapter restaurantsAdapter = new RestaurantsAdapter(restaurantList, getContext(), restaurant -> {
             Intent intent = new Intent(getActivity(), RestaurantActivity.class);
             intent.putExtra("restaurant", restaurant);
+            intent.putExtra("PAGE_TITLE", restaurant.getName());
             startActivity(intent);
         });
         recyclerView.setAdapter(restaurantsAdapter);
