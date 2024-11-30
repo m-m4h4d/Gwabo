@@ -8,49 +8,84 @@
     android:padding="16dp">
 
     <!-- Add Contact Information Section -->
-    <TextView
-        android:layout_width="wrap_content"
+    <FrameLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add contact information"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="8dp"
-        tools:ignore="HardcodedText" />
+        android:layout_margin="8dp">
+
+        <ImageView
+            android:id="@+id/btnClose"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:contentDescription="TODO"
+            android:src="@drawable/baseline_close_24"
+            android:layout_margin="8dp"
+            tools:ignore="ContentDescription,HardcodedText" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add contact information"
+            android:fontFamily="@font/lato_regular"
+            android:layout_gravity="center"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_margin="8dp"
+            tools:ignore="HardcodedText" />
+    </FrameLayout>
 
     <EditText
+        android:id="@+id/streetEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Street"
+        android:importantForAutofill="no"
+        android:inputType="text"
         tools:ignore="HardcodedText" />
 
     <EditText
+        android:id="@+id/appNEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="App N"
+        android:importantForAutofill="no"
+        android:inputType="text"
         tools:ignore="HardcodedText" />
 
     <EditText
+        android:id="@+id/cityEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="City"
+        android:importantForAutofill="no"
+        android:inputType="text"
         tools:ignore="HardcodedText" />
 
     <EditText
+        android:id="@+id/postalCodeEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Postal Code"
+        android:importantForAutofill="no"
+        android:inputType="number"
         tools:ignore="HardcodedText" />
 
     <EditText
+        android:id="@+id/phoneEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Phone number"
+        android:importantForAutofill="no"
+        android:inputType="phone"
         tools:ignore="HardcodedText" />
 
     <EditText
+        android:id="@+id/emailEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Email address"
+        android:importantForAutofill="no"
+        android:inputType="textEmailAddress"
         tools:ignore="HardcodedText" />
 
     <!-- Divider -->
@@ -72,6 +107,7 @@
 
     <!-- Payment Option -->
     <RadioGroup
+        android:id="@+id/paymentMethodRadioGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -94,9 +130,12 @@
         tools:ignore="HardcodedText" />
 
     <EditText
+        android:id="@+id/cardNumberEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Add visa card number"
+        android:importantForAutofill="no"
+        android:inputType="numberPassword"
         tools:ignore="HardcodedText" />
 
     <LinearLayout
@@ -105,18 +144,24 @@
         android:orientation="horizontal">
 
         <EditText
+            android:id="@+id/expDateEditText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="Expiring date"
             android:layout_weight="1"
             android:layout_marginEnd="8dp"
+            android:importantForAutofill="no"
+            android:inputType="date"
             tools:ignore="HardcodedText" />
 
         <EditText
+            android:id="@+id/cvvEditText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="CVV"
             android:layout_weight="1"
+            android:importantForAutofill="no"
+            android:inputType="numberPassword"
             tools:ignore="HardcodedText" />
     </LinearLayout>
 
@@ -125,6 +170,7 @@
         android:id="@+id/btnContinue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/lato_bold"
         android:text="Continue"
         android:backgroundTint="@color/blue"
         android:textColor="@android:color/white"

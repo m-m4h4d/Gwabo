@@ -18,6 +18,7 @@ import com.example.gwabo.R;
 import com.example.gwabo.adapter.CartAdapter;
 import com.example.gwabo.model.CartManager;
 import com.example.gwabo.databinding.FragmentOrdersBinding;
+import com.example.gwabo.ui.payment.PaymentDetailsFragment;
 
 import java.util.Objects;
 
@@ -44,16 +45,21 @@ public class OrdersFragment extends Fragment {
     }
 
     private void showPaymentDetails() {
-        // Inflate the payment details view
-        @SuppressLint("InflateParams") View paymentView = LayoutInflater.from(getContext()).inflate(R.layout.payment_details_page, null);
+        // Navigate to the PaymentDetailsFragment
+        PaymentDetailsFragment paymentDetailsFragment = new PaymentDetailsFragment();
 
-        // Add the payment view to a FrameLayout or container
-        FrameLayout rootLayout = requireActivity().findViewById(android.R.id.content);
-        rootLayout.addView(paymentView);
-
-        // Apply the slide-up animation
-        Animation slideUp = AnimationUtils.loadAnimation(getContext(), R.anim.slide_up);
-        paymentView.startAnimation(slideUp);
+        // Add custom animations for the fragment transition
+        requireActivity().getSupportFragmentManager()
+                .beginTransaction()
+                .setCustomAnimations(
+                        R.anim.slide_up,     // Enter animation
+                        R.anim.fade_out,     // Exit animation
+                        R.anim.fade_in,      // Pop enter animation (when coming back)
+                        R.anim.slide_down    // Pop exit animation (when going back)
+                )
+                .replace(R.id.fragment_container, paymentDetailsFragment) // Ensure the container ID matches your activity's layout
+                .addToBackStack(null) // Add to back stack to allow back navigation
+                .commit();
     }
 
     @Override
