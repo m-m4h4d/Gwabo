@@ -1,4 +1,4 @@
-package com.example.gwabo.ui.cart;
+package com.example.gwabo.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -21,8 +21,8 @@ import java.util.List;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder> {
 
-    private List<Product> cartItems;
-    private Context context;
+    private final List<Product> cartItems;
+    private final Context context;
 
     public CartAdapter(List<Product> cartItems, Context context) {
         this.cartItems = cartItems;

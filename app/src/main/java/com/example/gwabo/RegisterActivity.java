@@ -1,26 +1,28 @@
 package com.example.gwabo;
 
 import android.annotation.SuppressLint;
-import android.content.ContentValues;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+
 import androidx.appcompat.app.AppCompatActivity;
+
+import org.json.JSONObject;
 
 import java.util.Objects;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private DatabaseHelper dbHelper;
     private EditText usernameEditText, emailEditText, passwordEditText;
-    private Button registerButton;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -29,12 +31,10 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
         Objects.requireNonNull(getSupportActionBar()).hide();
 
-        // Initialize database helper and UI elements
-        dbHelper = new DatabaseHelper(this);
         usernameEditText = findViewById(R.id.usernameEditText);
         emailEditText = findViewById(R.id.emailEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
-        registerButton = findViewById(R.id.btnRegister);
+        Button registerButton = findViewById(R.id.btnRegister);
 
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,47 +45,68 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void registerUser() {
-        String username = usernameEditText.getText().toString();
-        String email = emailEditText.getText().toString();
-        String password = passwordEditText.getText().toString();
+        String username = usernameEditText.getText().toString().trim();
+        String email = emailEditText.getText().toString().trim();
+        String password = passwordEditText.getText().toString().trim();
 
-        // Insert the new user into the database
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put("username", username);
-        values.put("email", email);
-        values.put("password", password);
-
-        long userId = db.insert("users", null, values);
-        if (userId != -1) {
-            Toast.makeText(this, "Registration Successful", Toast.LENGTH_SHORT).show();
-            finish(); // Return to the login screen
-        } else {
-            Toast.makeText(this, "Registration Failed", Toast.LENGTH_SHORT).show();
+        // Perform input validation
+        if (username.isEmpty() || email.isEmpty() || password.isEmpty()) {
+            Toast.makeText(this, "All fields are required", Toast.LENGTH_SHORT).show();
+            return;
         }
-        // Inside RegisterActivity.java, after successful registration
-        DatabaseHelper helper = new DatabaseHelper(this);
 
-        // Fetching all users
-        Cursor cursor = helper.getAllUsers();
+        // API URL
+        String url = "https://wavemediatech.ca/register_user.php";
 
-        if (cursor.getCount() == 0) {
-            Toast.makeText(this, "No users found", Toast.LENGTH_SHORT).show();
-        } else {
-            StringBuilder usersData = new StringBuilder();
-            while (cursor.moveToNext()) {
-                usersData.append("ID: ").append(cursor.getString(0)).append("\n");
-                usersData.append("Username: ").append(cursor.getString(1)).append("\n");
-                usersData.append("Email: ").append(cursor.getString(2)).append("\n");
-                usersData.append("Password: ").append(cursor.getString(3)).append("\n\n");
+        // Create an OkHttpClient instance
+        OkHttpClient client = new OkHttpClient();
+
+        // Build the form body
+        RequestBody formBody = new FormBody.Builder()
+                .add("username", username)
+                .add("email", email)
+                .add("password", password)
+                .build();
+
+        // Create the request
+        Request request = new Request.Builder()
+                .url(url)
+                .post(formBody)
+                .build();
+
+        // Execute the request in a background thread
+        new Thread(() -> {
+            try {
+                Response response = client.newCall(request).execute();
+
+                if (response.isSuccessful()) {
+                    // Parse the response
+                    assert response.body() != null;
+                    String responseData = response.body().string();
+                    JSONObject jsonObject = new JSONObject(responseData);
+
+                    String status = jsonObject.getString("status");
+                    String message = jsonObject.getString("message");
+
+                    // Update the UI on the main thread
+                    runOnUiThread(() -> {
+                        Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_SHORT).show();
+                        if (status.equals("success")) {
+                            // Navigate to login or main activity
+                            Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    });
+                } else {
+                    // Handle error response
+                    runOnUiThread(() ->
+                            Toast.makeText(RegisterActivity.this, "Registration failed", Toast.LENGTH_SHORT).show());
+                }
+            } catch (Exception e) {
+                runOnUiThread(() ->
+                        Toast.makeText(RegisterActivity.this, "Request failed: " + e.getMessage(), Toast.LENGTH_SHORT).show());
             }
-            // Display the data in a Toast message or log it
-            Toast.makeText(this, usersData.toString(), Toast.LENGTH_LONG).show();
-            Log.d("UserRecords", usersData.toString());
-        }
-        cursor.close();
-
-        Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
-        startActivity(intent);
+        }).start();
     }
 }
