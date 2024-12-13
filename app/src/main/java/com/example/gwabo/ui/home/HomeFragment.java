@@ -1,6 +1,7 @@
 package com.example.gwabo.ui.home;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,10 +14,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gwabo.R;
+import com.example.gwabo.RestaurantActivity;
 import com.example.gwabo.adapter.CategoryAdapter;
 import com.example.gwabo.adapter.ProductAdapter;
+import com.example.gwabo.adapter.RestaurantAdapter;
+import com.example.gwabo.adapter.RestaurantsAdapter;
 import com.example.gwabo.model.Category;
 import com.example.gwabo.model.Product;
+import com.example.gwabo.model.Restaurant;
 import com.example.gwabo.network.ApiService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -35,10 +40,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class HomeFragment extends Fragment {
 
     private ProductAdapter productAdapter;
+    private CategoryAdapter categoryAdapter;
+    private RestaurantAdapter restaurantAdapter;
     private List<Product> productList;
     private List<Product> displayedProducts;
     private List<Category> categoryList;
-    private CategoryAdapter categoryAdapter;
+    private List<Restaurant> restaurantList;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -46,13 +53,23 @@ public class HomeFragment extends Fragment {
 
         // Initialize the RecyclerView
         RecyclerView recyclerView = root.findViewById(R.id.recyclerViewProducts);
+        RecyclerView restaurantView = root.findViewById(R.id.recyclerViewRestaurants);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));  // 2 columns for grid layout
+        restaurantView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        restaurantView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
         // Initialize the product list
         productList = new ArrayList<>();
         displayedProducts = new ArrayList<>();
+        restaurantList = new ArrayList<>();
         productAdapter = new ProductAdapter(displayedProducts, getContext());
+        restaurantAdapter = new RestaurantAdapter(restaurantList, getContext(), restaurant -> {
+            Intent intent = new Intent(getActivity(), RestaurantActivity.class);
+            intent.putExtra("restaurant", restaurant);
+            intent.putExtra("PAGE_TITLE", restaurant.getName());
+            startActivity(intent);
+        });
 
         // Set up Retrofit
         Gson gson = new GsonBuilder().setLenient().create();
@@ -83,12 +100,35 @@ public class HomeFragment extends Fragment {
         });
         categoryRecyclerView.setAdapter(categoryAdapter);
         recyclerView.setAdapter(productAdapter);
+        restaurantView.setAdapter(restaurantAdapter);
 
         // Initialize Retrofit and load products
         loadProductsFromApi(apiService);
         loadCategories(apiService);
+        loadRestaurantsFromApi(apiService);
 
         return root;
+    }
+
+    private void loadRestaurantsFromApi(ApiService apiService) {
+        apiService.getRestaurants().enqueue(new Callback<List<Restaurant>>() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onResponse(@NonNull Call<List<Restaurant>> call, @NonNull Response<List<Restaurant>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    restaurantList.clear();
+                    restaurantList.addAll(response.body());
+                    restaurantAdapter.notifyDataSetChanged();
+                } else {
+                    Toast.makeText(getContext(), "Failed to get restaurants", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<List<Restaurant>> call, @NonNull Throwable t) {
+                Toast.makeText(getContext(), "Error: " + t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     private void loadProductsFromApi(ApiService apiService) {

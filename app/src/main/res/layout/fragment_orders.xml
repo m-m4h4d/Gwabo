@@ -31,7 +31,6 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/lato_regular"
                     android:layout_marginStart="50dp"
                     android:text="Deliver to Marius - Whitby L1R 2M5"
                     android:textSize="20sp"
@@ -58,7 +57,6 @@
                         android:layout_width="wrap_content"
                         android:paddingHorizontal="70dp"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/lato_regular"
                         android:backgroundTint="#F86A01"
                         android:text="Place Your Order"
                         android:layout_marginStart="20dp"
@@ -71,7 +69,6 @@
                         android:id="@+id/btnCall"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/lato_regular"
                         android:drawableEnd="@drawable/baseline_phone_24"
                         android:backgroundTint="@color/white"
                         app:strokeColor="#F86A01"

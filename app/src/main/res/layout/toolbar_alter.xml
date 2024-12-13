@@ -26,7 +26,6 @@
         android:layout_centerHorizontal="true"
         android:textAlignment="center"
         android:textColor="@color/main_200"
-        android:fontFamily="@font/lato_bold"
         tools:ignore="RelativeOverlap" />
 
     <ImageView

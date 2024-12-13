@@ -102,7 +102,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/black"
-                        android:fontFamily="@font/lato_regular"
                         android:textSize="16sp" />
                 </FrameLayout>
 
@@ -120,7 +119,6 @@
                     android:layout_height="49dp"
                     android:background="@drawable/flat_corner"
                     android:layout_marginHorizontal="1dp"
-                    android:fontFamily="@font/lato_regular"
                     android:text="Buy Now"
                     app:layout_constraintBottom_toBottomOf="@+id/product_description"
                     tools:ignore="HardcodedText" />
@@ -132,7 +130,6 @@
                     android:layout_marginStart="1dp"
                     android:layout_marginBottom="10dp"
                     android:backgroundTint="#F8DD12"
-                    android:fontFamily="@font/lato_regular"
                     android:text="Add to List"
                     android:textColor="@color/black"
                     android:textSize="11sp"
@@ -154,7 +151,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="50dp"
-                    android:fontFamily="@font/lato_regular"
                     android:text="Deliver to Marius - Whitby L1R 2M5"
                     android:textColor="#11425D"
                     android:textSize="20sp"

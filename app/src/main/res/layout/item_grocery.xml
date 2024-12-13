@@ -23,37 +23,33 @@
                 android:layout_width="129dp"
                 android:layout_height="25dp"
                 android:layout_gravity="start"
-                android:paddingVertical="6dp"
+                android:paddingVertical="4dp"
                 android:paddingHorizontal="4dp"
                 android:background="#464643"
                 android:textColor="@color/white"
                 android:textSize="12sp"
-                android:fontFamily="@font/lato_black"
                 tools:ignore="RtlCompat" />
             <TextView
                 android:id="@+id/grocery_price"
                 android:layout_width="50dp"
                 android:layout_height="25dp"
-                android:paddingVertical="6dp"
+                android:paddingVertical="4dp"
                 android:background="@color/main_500"
                 android:textColor="@color/white"
                 android:layout_gravity="end"
                 android:textSize="12sp"
                 android:textAlignment="center"
-                android:fontFamily="@font/lato_black"
                 tools:ignore="RtlCompat" />
         </FrameLayout>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="20dp"
-            android:paddingVertical="2dp"
             android:paddingHorizontal="4dp"
             android:background="#F8DD14"
             android:layout_gravity="end"
             android:text="ADD TO LIST"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:fontFamily="@font/lato_black"
             tools:ignore="HardcodedText,RtlCompat" />
         <ImageView
             android:id="@+id/grocery_image"
