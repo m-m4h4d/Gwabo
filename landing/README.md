@@ -11,6 +11,8 @@ Static marketing page for the Gwabo Android app. No build step.
 
 ## Before going live
 
-- Set the `href` of `#apk-link` in `index.html` to your APK download URL
-  (for example, an asset on a GitHub Release).
+- `gwabo.apk` is a debug build of the app, served from this folder. To update it,
+  run `./gradlew assembleDebug` from the repo root and copy
+  `app/build/outputs/apk/debug/app-debug.apk` over `landing/gwabo.apk`.
+  Replace it with a signed release build before a public launch.
 - When the app is on Google Play, swap the "coming soon" button for a real Play Store link.
